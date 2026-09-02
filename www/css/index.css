@@ -1,7 +1,7 @@
-/* ================================
+/* 
    BASIC STUDENT PROFILE
    Luic Villamin
-   ================================ */
+    */
 
 /* General page settings */
 html {
@@ -10,6 +10,11 @@ html {
 
 * {
     box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 body {
@@ -21,9 +26,9 @@ body {
 }
 
 
-/* ================================
+/* 
    HEADER
-   ================================ */
+    */
 
 .header {
     background-color: #6f4e37;
@@ -58,32 +63,36 @@ body {
 
 .profile h1 {
     margin: 5px 0;
-    font-size: 32px;
+    font-size: clamp(26px, 5vw, 32px);
 }
 
 .subtitle {
     margin: 0 0 25px;
-    font-size: 18px;
+    font-size: clamp(16px, 3vw, 18px);
 }
 
 
-/* ================================
+/* 
    NAVIGATION
-   ================================ */
+    */
 
 .navigation {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: clamp(5px, 2vw, 10px);
+    flex-wrap: wrap;
 
     margin-top: 25px;
 }
 
 .navigation a {
+    display: inline-block;
+
     color: white;
     text-decoration: none;
 
     padding: 12px 25px;
+    min-height: 44px;
 
     font-weight: bold;
 
@@ -96,15 +105,22 @@ body {
     background-color: #8b6a4d;
 }
 
+.navigation a:focus {
+    background-color: #8b6a4d;
+    outline: 3px solid #f5efe6;
+    outline-offset: 2px;
+}
 
-/* ================================
+
+/* 
    MAIN SECTIONS
-   ================================ */
+   */
 
 .section {
+    width: 90%;
     max-width: 900px;
     margin: 35px auto;
-    padding: 30px;
+    padding: clamp(20px, 4vw, 30px);
 
     background-color: #fffaf3;
 
@@ -116,11 +132,15 @@ body {
 .section h2 {
     color: #6f4e37;
     text-align: center;
-
     margin-top: 0;
     margin-bottom: 25px;
+    font-size: clamp(24px, 4vw, 28px);
+}
 
-    font-size: 28px;
+.section p {
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .section h2::after {
@@ -136,18 +156,15 @@ body {
 }
 
 
-/* ================================
+/* 
    INFORMATION CARDS
-   ================================ */
+ */
 
 .info-card {
     background-color: #f5efe6;
-
-    padding: 20px;
+    padding: clamp(16px, 3vw, 20px);
     margin-top: 20px;
-
     border-left: 5px solid #6f4e37;
-
     border-radius: 8px;
 }
 
@@ -157,27 +174,21 @@ body {
 }
 
 
-/* ================================
+/* 
    SKILLS
-   ================================ */
+  */
 
 .skills-container {
     display: grid;
-
     grid-template-columns: repeat(2, 1fr);
-
-    gap: 20px;
+    gap: clamp(15px, 3vw, 20px);
 }
 
 .skill-card {
     background-color: #f5efe6;
-
-    padding: 20px;
-
+    padding: clamp(18px, 3vw, 20px);
     border-radius: 10px;
-
     border-top: 4px solid #6f4e37;
-
     transition:
         transform 0.3s ease,
         box-shadow 0.3s ease;
@@ -195,18 +206,16 @@ body {
 }
 
 
-/* ================================
+/* 
    CONTACT
-   ================================ */
+   */
 
 .contact-card {
     background-color: #f5efe6;
-
-    padding: 20px;
-
+    padding: clamp(16px, 3vw, 20px);
     border-radius: 10px;
-
     text-align: center;
+	overflow-wrap: anywhere;
 }
 
 .contact-card strong {
@@ -214,19 +223,15 @@ body {
 }
 
 
-/* ================================
+/* 
    FOOTER
-   ================================ */
+*/
 
 .footer {
     background-color: #6f4e37;
-
     color: white;
-
     text-align: center;
-
-    padding: 20px;
-
+    padding: clamp(16px, 3vw, 20px);
     margin-top: 40px;
 }
 
@@ -235,9 +240,41 @@ body {
 }
 
 
-/* ================================
+/* 
+   TABLET RESPONSIVE DESIGN
+    */
+
+@media (min-width: 601px) and (max-width: 900px) {
+
+    .header {
+        padding: 30px 20px 0;
+    }
+
+    .profile h1 {
+        font-size: 30px;
+    }
+
+    .section {
+        width: 92%;
+        padding: 25px;
+    }
+	
+	.section p {
+		font-size: 16px;
+		line-height: 1.7;
+	}
+
+    .skills-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+}
+
+
+/*
    MOBILE RESPONSIVE DESIGN
-   ================================ */
+ */
 
 @media (max-width: 600px) {
 
@@ -254,21 +291,37 @@ body {
     }
 
     .navigation {
-        gap: 0;
+        gap: 5px;
     }
 
     .navigation a {
-        padding: 10px 14px;
-        font-size: 14px;
-    }
+		padding: 10px 14px;
+		font-size: 14px;
+		min-width: 80px;
+		text-align: center;
+	}
 
     .section {
-        margin: 20px 12px;
+        margin: 20px auto;
         padding: 20px;
     }
 
     .section h2 {
         font-size: 24px;
+    }
+	
+	.info-card h3,
+	.skill-card h3 {
+		font-size: 19px;
+	}
+
+    .section p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .skill-card {
+        padding: 18px;
     }
 
     .skills-container {
@@ -276,8 +329,8 @@ body {
     }
 
     .profile-picture {
-        width: 100px;
-        height: 100px;
-        font-size: 30px;
-    }
+		width: 100px;
+		height: 100px;
+		margin-bottom: 12px;
+	}
 }

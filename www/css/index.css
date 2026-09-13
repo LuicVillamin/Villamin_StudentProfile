@@ -334,3 +334,33 @@ body {
 		margin-bottom: 12px;
 	}
 }
+
+/*
+   PAGE LINKS
+*/
+
+.info-card a {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 16px;
+
+    background-color: #6f4e37;
+    color: white;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    border-radius: 6px;
+
+    min-height: 44px;
+}
+
+.info-card a:hover {
+    background-color: #8b6a4d;
+}
+
+.info-card a:focus {
+    background-color: #8b6a4d;
+    outline: 3px solid #6f4e37;
+    outline-offset: 2px;
+}

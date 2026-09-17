@@ -492,6 +492,10 @@ The Activity 5 application was successfully built, installed, and tested on an A
 
 ![Activity 5 Updated Profile Additional View](screenshots/Activity5_UpdatedProfile2.png)
 
+### Screenshot 5 - Contact
+
+![Activity 5 Contact](screenshots/Activity5_Contact.png)
+
 ## Activity 5 - Form Validation Screenshots
 
 ### Full Name - Empty Field
@@ -533,6 +537,14 @@ The Activity 5 application was successfully built, installed, and tested on an A
 ### Skills - Saved Without Alert
 
 ![Skills Saved](screenshots/Activity5_Validation_Skills_Saved.png)
+
+## Activity 5 - Testing
+
+- **Test 1:** Changed Full Name, Course, Year Level, About Me, and Skills together and confirmed that all changes updated immediately.
+- **Test 2:** Changed profile information and selected Cancel. The changes were discarded and the previous profile remained.
+- **Test 3:** Tested empty required fields. The application prevented saving and displayed a validation message.
+- **Test 4:** Saved profile changes, closed the application, and reopened it. The saved information remained through localStorage.
+- **Test 5:** Performed multiple profile updates and confirmed that the latest saved information was displayed.
 
 ## Activity 5 - Conclusion
 

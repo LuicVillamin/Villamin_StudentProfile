@@ -341,4 +341,205 @@ The Student Profile was successfully converted into a multi-page application con
 
 The five pages use consistent navigation and UI/UX design. The application was tested on desktop, tablet, and mobile screen sizes and successfully built, installed, and launched using Apache Cordova on an Android emulator.
 
+
+---
+
+# Activity 5 - Student Profile Editing and Local Data Storage
+
+## About the Project
+
+Activity 5 continues the Activity 4 Multi-Page Student Profile project. The Profile page was improved by adding an Edit Profile function using JavaScript.
+
+The user can edit profile information, validate the required fields, save changes, cancel changes, and keep the updated information using browser localStorage.
+
+The Activity 4 pages and functionality were retained.
+
+## Application Pages
+
+The application contains five pages:
+
+* **Profile** - Main student profile page with profile information and Edit Profile function.
+* **About** - Personal introduction, interests, educational background, and goals.
+* **Skills** - Skills and abilities developed as an IT student.
+* **Projects** - Programming and application projects.
+* **Contact** - Contact and professional information.
+
+## Edit Profile Function
+
+The Profile page includes an **Edit Profile** button.
+
+The editable information includes:
+
+* Full Name
+* Course
+* Year Level
+* About Me
+* Skills
+
+When the Edit Profile button is selected, the current profile information is automatically placed into the form.
+
+## JavaScript Features
+
+JavaScript was used to implement the following features:
+
+* Opening the Edit Profile form.
+* Displaying the current profile information.
+* Handling the Save button.
+* Handling the Cancel button.
+* Validating required fields.
+* Updating the profile information dynamically.
+* Saving profile information to localStorage.
+* Retrieving saved profile information when the application is opened again.
+
+The profile is updated dynamically without manually changing the HTML content.
+
+## Form Validation
+
+The following fields are required:
+
+* Full Name
+* Course
+* Year Level
+* About Me
+
+If any required field is empty, the application prevents the profile from being saved and displays an alert message.
+
+The Skills field is optional, so the profile can still be saved when Skills is empty.
+
+## Save and Cancel
+
+The **Save** button validates the information, stores the updated profile in localStorage, and updates the Profile page.
+
+The **Cancel** button closes the Edit Profile form without saving the changes.
+
+## Local Storage
+
+The application uses JavaScript `localStorage` to store the student profile information.
+
+The stored profile data includes:
+
+* Full Name
+* Course
+* Year Level
+* About Me
+* Skills
+
+The saved information remains available after closing and reopening the application.
+
+If no saved profile information exists, the application uses the default student profile information.
+
+## Responsive Design
+
+The Activity 5 profile editing interface keeps the responsive design from Activity 4.
+
+The application was designed to work on:
+
+* Desktop
+* Tablet
+* Mobile
+
+The Edit Profile form also adjusts to smaller screen sizes.
+
+## Technologies Used
+
+* HTML
+* CSS
+* JavaScript
+* Apache Cordova
+* Android SDK
+* Gradle
+* Android Emulator
+* Browser localStorage
+
+## How to Run Activity 5
+
+### Web Browser
+
+1. Open the `Villamin_Profile` project folder.
+2. Open the `www` folder.
+3. Open `index.html` in a web browser.
+4. Click **Edit Profile**.
+5. Edit the profile information.
+6. Click **Save** to save the changes.
+7. Click **Cancel** to cancel changes.
+8. Test the required-field validation.
+
+### Android Emulator
+
+1. Open the `Villamin_Profile` project folder in Command Prompt.
+2. Build the Android application using Apache Cordova.
+3. Run the application on an Android emulator.
+4. Open the Profile page.
+5. Test the Edit Profile, Save, Cancel, validation, and localStorage features.
+
+The Activity 5 application was successfully built, installed, and tested on an Android emulator.
+
+## Activity 5 Screenshots
+
+### Screenshot 1 - Student Profile
+
+![Activity 5 Profile](screenshots/Activity5_Profile.png)
+
+### Screenshot 2 - Edit Profile
+
+![Activity 5 Edit Profile](screenshots/Activity5_EditProfile.png)
+
+### Screenshot 3 - Updated Profile
+
+![Activity 5 Updated Profile](screenshots/Activity5_UpdatedProfile1.png)
+
+### Screenshot 4 - Updated Profile Additional View
+
+![Activity 5 Updated Profile Additional View](screenshots/Activity5_UpdatedProfile2.png)
+
+## Activity 5 - Form Validation Screenshots
+
+### Full Name - Empty Field
+
+![Full Name Empty](screenshots/Activity5_Validation_FullName_Empty.png)
+
+### Full Name - Validation Alert
+
+![Full Name Alert](screenshots/Activity5_Validation_FullName_Alert.png)
+
+### Course - Empty Field
+
+![Course Empty](screenshots/Activity5_Validation_Course_Empty.png)
+
+### Course - Validation Alert
+
+![Course Alert](screenshots/Activity5_Validation_Course_Alert.png)
+
+### Year Level - Empty Field
+
+![Year Level Empty](screenshots/Activity5_Validation_YearLevel_Empty.png)
+
+### Year Level - Validation Alert
+
+![Year Level Alert](screenshots/Activity5_Validation_YearLevel_Alert.png)
+
+### About Me - Empty Field
+
+![About Me Empty](screenshots/Activity5_Validation_AboutMe_Empty.png)
+
+### About Me - Validation Alert
+
+![About Me Alert](screenshots/Activity5_Validation_AboutMe_Alert.png)
+
+### Skills - Empty Field
+
+![Skills Empty](screenshots/Activity5_Validation_Skills_Empty.png)
+
+### Skills - Saved Without Alert
+
+![Skills Saved](screenshots/Activity5_Validation_Skills_Saved.png)
+
+## Activity 5 - Conclusion
+
+The Student Profile was improved by adding profile editing, form validation, dynamic content updates, Save and Cancel functions, and localStorage for persistent data.
+
+The Activity 5 features were tested on an Android emulator, including editing profile information, cancelling changes, validating empty required fields, saving multiple updates, and keeping saved information after closing and reopening the application.
+
+---
+
 © 2026 Luic Villamin. All Rights Reserved.

@@ -364,3 +364,84 @@ body {
     outline: 3px solid #6f4e37;
     outline-offset: 2px;
 }
+
+/*
+   ACTIVITY 5 - PROFILE EDITING
+*/
+
+#editForm input,
+#editForm textarea {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #c8b39f;
+    border-radius: 6px;
+
+    background-color: white;
+    color: #3e2b20;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+
+    margin-bottom: 10px;
+}
+
+#editForm textarea {
+    resize: vertical;
+}
+
+#editForm input:focus,
+#editForm textarea:focus {
+    outline: 3px solid #d8c0a8;
+    border-color: #6f4e37;
+}
+
+#editForm button,
+#profileDisplay button {
+    padding: 11px 18px;
+
+    background-color: #6f4e37;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    min-height: 44px;
+
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+#editForm button:hover,
+#profileDisplay button:hover {
+    background-color: #8b6a4d;
+}
+
+#editForm button:focus,
+#profileDisplay button:focus {
+    outline: 3px solid #d8c0a8;
+    outline-offset: 2px;
+}
+
+
+/*
+   ACTIVITY 5 - MOBILE FORM
+*/
+
+@media (max-width: 600px) {
+
+    #editForm input,
+    #editForm textarea {
+        font-size: 16px;
+    }
+
+    #editForm button,
+    #profileDisplay button {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

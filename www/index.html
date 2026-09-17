@@ -26,10 +26,14 @@
                      alt="Profile picture of Luic Villamin">
             </div>
 
-            <h1>Luic Villamin</h1>
+            <h1 id="profileName">Luic Villamin</h1>
 
-            <p class="subtitle">
-                Information Technology Student
+            <p class="subtitle" id="profileCourse">
+                Bachelor of Science in Information Technology
+            </p>
+
+            <p class="subtitle" id="profileYear">
+                3rd Year
             </p>
 
         </div>
@@ -52,16 +56,122 @@
     <!-- Main Content -->
     <main>
 
+        <!-- Profile Display -->
+        <section class="section" id="profileDisplay">
+
+            <h2>My Profile</h2>
+
+            <div class="info-card">
+
+                <h3>About Me</h3>
+
+                <p id="profileAbout">
+                    I am a Bachelor of Science in Information Technology
+                    student who is interested in computers, programming,
+                    and technology.
+                </p>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <h3>My Skills</h3>
+
+                <p id="profileSkills">
+                    HTML, CSS, Java Programming, Problem Solving,
+                    Computer Skills
+                </p>
+
+            </div>
+
+
+            <button type="button" id="editProfileButton">
+                Edit Profile
+            </button>
+
+        </section>
+
+
+        <!-- Edit Profile Form -->
+        <section class="section" id="editForm" style="display: none;">
+
+            <h2>Edit Profile</h2>
+
+            <div class="info-card">
+
+                <p>
+                    <label for="fullName">Full Name</label>
+                </p>
+
+                <input type="text"
+                       id="fullName"
+                       placeholder="Enter your full name">
+
+
+                <p>
+                    <label for="course">Course</label>
+                </p>
+
+                <input type="text"
+                       id="course"
+                       placeholder="Enter your course">
+
+
+                <p>
+                    <label for="yearLevel">Year Level</label>
+                </p>
+
+                <input type="text"
+                       id="yearLevel"
+                       placeholder="Enter your year level">
+
+
+                <p>
+                    <label for="aboutMe">About Me</label>
+                </p>
+
+                <textarea id="aboutMe"
+                          rows="5"
+                          placeholder="Tell something about yourself"></textarea>
+
+
+                <p>
+                    <label for="skills">Skills</label>
+                </p>
+
+                <textarea id="skills"
+                          rows="4"
+                          placeholder="Enter your skills"></textarea>
+
+
+                <p>
+
+                    <button type="button" id="saveProfileButton">
+                        Save
+                    </button>
+
+                    <button type="button" id="cancelProfileButton">
+                        Cancel
+                    </button>
+
+                </p>
+
+            </div>
+
+        </section>
+
+
         <!-- Profile Introduction -->
         <section class="section">
 
             <h2>Welcome to My Profile</h2>
 
             <p>
-                Hello! My name is Luic Villamin. I am a Bachelor of
-                Science in Information Technology student who is
-                interested in computers, programming, and technology.
-            </p>
+                Welcome to my student profile. This page contains
+                information about me, my skills, my projects, and
+                ways to contact me.
+           </p>
 
             <p>
                 This website contains information about me, my skills,
@@ -158,6 +268,9 @@
 
     <!-- Cordova -->
     <script src="cordova.js"></script>
+
+    <!-- Activity 5 JavaScript -->
+    <script src="js/profile.js"></script>
 
 </body>
 </html>

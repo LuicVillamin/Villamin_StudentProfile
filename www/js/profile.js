@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Display the profile information
     displayProfile(profile);
 
+    // Load saved profile picture
+    loadProfilePicture();
+
     // Edit Profile button
     const editButton = document.getElementById("editProfileButton");
 
@@ -37,6 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("profileYear").textContent = data.yearLevel;
         document.getElementById("profileAbout").textContent = data.aboutMe;
         document.getElementById("profileSkills").textContent = data.skills;
+    }
+
+    // Load saved profile picture from localStorage
+    function loadProfilePicture() {
+
+        const savedPicture = localStorage.getItem("profilePicture");
+
+        if (savedPicture) {
+            document.getElementById("profilePicture").src = savedPicture;
+        }
     }
 
     // Open Edit Profile form
@@ -108,5 +121,66 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("editForm").style.display = "none";
         document.getElementById("profileDisplay").style.display = "block";
     });
+
+    // Camera button
+    document.addEventListener("deviceready", function () {
+
+        const cameraButton =
+            document.getElementById("changeProfilePictureButton");
+
+        if (cameraButton) {
+
+            cameraButton.addEventListener("click", function () {
+
+                navigator.camera.getPicture(
+                    function (imageData) {
+
+                 // Display the captured image
+                   let imageSource = imageData;
+
+                    if (!imageData.startsWith("data:")) {
+                    imageSource = "data:image/jpeg;base64," + imageData;
+                    }
+
+                    document.getElementById("profilePicture").src = imageSource;
+
+                    // Save the captured image to localStorage
+                        localStorage.setItem("profilePicture", imageSource);
+
+                        alert("Profile picture updated successfully.");
+                    },
+
+                    function (error) {
+
+                        // Keep the existing profile picture
+                        if (
+                            error === "No Image Selected" ||
+                            error === "Selection cancelled."
+                        ) {
+                            alert(
+                                "Camera was cancelled. Your current profile picture was kept."
+                            );
+                        } else {
+                            alert(
+                                "Unable to access the camera. Your current profile picture was kept."
+                            );
+                        }
+                    },
+
+                    {
+                        quality: 70,
+                        destinationType: Camera.DestinationType.DATA_URL,
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        encodingType: Camera.EncodingType.JPEG,
+                        targetWidth: 500,
+                        targetHeight: 500,
+                        correctOrientation: true,
+                        saveToPhotoAlbum: false
+                    }
+                );
+            });
+        }
+
+    }, false);
 
 });

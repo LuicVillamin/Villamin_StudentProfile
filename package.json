@@ -20,6 +20,14 @@
     "platforms": [
       "browser",
       "android"
-    ]
+    ],
+    "plugins": {
+      "cordova-plugin-camera": {
+        "ANDROIDX_CORE_VERSION": "1.6.+"
+      }
+    }
+  },
+  "dependencies": {
+    "cordova-plugin-camera": "8.0.0"
   }
 }

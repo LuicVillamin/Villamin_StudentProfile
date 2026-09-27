@@ -15,9 +15,43 @@
 </head>
 
 <body>
+    <!-- Activity 7 Login -->
+    <section class="section" id="loginSection">
+
+        <h2>Student Login</h2>
+
+        <div class="info-card">
+
+            <p>
+                <label for="loginStudentId">Student ID</label>
+            </p>
+
+            <input type="text"
+                   id="loginStudentId"
+                   placeholder="Enter your student ID">
+
+            <p>
+                <label for="loginPassword">Password</label>
+            </p>
+
+            <input type="password"
+                   id="loginPassword"
+                   placeholder="Enter your password">
+
+            <p>
+                <button type="button" id="loginButton">
+                    Login
+                </button>
+            </p>
+
+            <p id="loginMessage"></p>
+
+        </div>
+
+    </section>
 
     <!-- Header -->
-    <header class="header">
+    <header class="header" id="profileContent" style="display: none;">
 
         <div class="profile">
 
@@ -59,7 +93,7 @@
 
 
     <!-- Main Content -->
-    <main>
+    <main id="protectedMain" style="display: none;">
 
         <!-- Profile Display -->
         <section class="section" id="profileDisplay">
@@ -262,7 +296,7 @@
 
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" id="profileFooter" style="display: none;">
 
         <p>
             &copy; 2026 Luic Villamin. All Rights Reserved.

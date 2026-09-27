@@ -303,6 +303,36 @@ app.put("/api/profile", authenticateToken, (req, res) => {
 });
 
 // Start server
+app.delete("/api/profile", authenticateToken, (req, res) => {
+    const studentId = req.user.studentId;
+
+    db.run(
+        `DELETE FROM student_profiles WHERE student_id = ?`,
+        [studentId],
+        function (err) {
+            if (err) {
+                console.error("Profile delete database error:", err.message);
+                return res.status(500).json({
+                    success: false,
+                    message: "Unable to delete your profile."
+                });
+            }
+
+            if (this.changes === 0) {
+                return res.status(404).json({
+                    success: false,
+                    message: "Student profile not found."
+                });
+            }
+
+            res.json({
+                success: true,
+                message: "Profile deleted successfully."
+            });
+        }
+    );
+});
+
 app.listen(PORT, "0.0.0.0", () => {
     console.log(
         `Server running at http://localhost:${PORT}`

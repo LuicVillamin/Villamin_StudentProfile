@@ -274,6 +274,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+    // LOGOUT
+
+    const logoutButton = document.getElementById("logoutButton");
+
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            sessionStorage.removeItem("authToken");
+            sessionStorage.removeItem("studentId");
+            document.getElementById("profileContent").style.display = "none";
+            document.getElementById("protectedMain").style.display = "none";
+            document.getElementById("profileFooter").style.display = "none";
+            document.getElementById("loginSection").style.display = "block";
+            document.getElementById("loginStudentId").value = "";
+            document.getElementById("loginPassword").value = "";
+            document.getElementById("loginMessage").textContent = "";
+            alert("You have been logged out successfully.");
+        });
+    }
+
     // EDIT PROFILE
 
 
@@ -601,7 +620,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         navigator.camera.getPicture(
 
-                            async function (imageData) {
+                            function (imageData) {
 
                                 // Display the captured image
                                 let imageSource =
@@ -640,15 +659,23 @@ document.addEventListener("DOMContentLoaded", function () {
                                 }
 
 
-                                // Save the new picture to database
-                                await updateProfilePicture(
-                                    imageSource
-                                );
+// Save the new picture to database
+updateProfilePicture(imageSource)
+    .then(function () {
+        alert(
+            "Profile picture updated successfully."
+        );
+    })
+    .catch(function (error) {
+        console.error(
+            "Profile picture update error:",
+            error
+        );
 
-
-                                alert(
-                                    "Profile picture updated successfully."
-                                );
+        alert(
+            "The picture was changed, but it could not be saved to the database."
+        );
+    });
 
                             },
 

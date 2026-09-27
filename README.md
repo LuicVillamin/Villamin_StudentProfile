@@ -730,4 +730,454 @@ The existing Activity 5 profile editing and localStorage features were also reta
 
 ---
 
+# Activity 7 - Student Login, Authentication, Database, and Profile Management
+
+## About the Project
+
+Activity 7 continues the existing Student Profile application by adding student login, authentication, database storage, profile management, CRUD operations, and persistent profile picture storage.
+
+The application now uses a Node.js and Express backend with an SQLite database. The Cordova mobile application communicates with the backend API instead of connecting directly to the database.
+
+The existing Activity 6 features were retained, including the Profile, About, Skills, Projects, Contact, Edit Profile, responsive design, and Camera integration.
+
+## Application Pages and Features
+
+The application contains the following main features:
+
+* **Login** - Allows a student to log in using a Student ID and password.
+* **Profile** - Displays the authenticated student's profile information.
+* **About** - Provides the student's personal introduction, interests, educational background, and goals.
+* **Skills** - Displays the student's skills.
+* **Projects** - Displays the student's projects and activities.
+* **Contact** - Provides contact and professional information.
+* **Edit Profile** - Allows the authenticated student to update profile information.
+* **Change Profile Picture** - Uses the Cordova Camera plugin to capture and save a new profile picture.
+* **Logout** - Ends the current authenticated session and returns the user to the Login page.
+
+## Authentication
+
+Activity 7 uses authentication to protect the student's profile information and profile management features.
+
+The login form requires:
+
+* Student ID
+* Password
+
+The login information is sent from the Cordova application to the backend API.
+
+The backend checks the Student ID and compares the submitted password with the securely hashed password stored in the database.
+
+Passwords are not stored as plain text. The project uses `bcryptjs` to hash passwords.
+
+After successful authentication, the backend creates a JSON Web Token (JWT). The token is used by the application when accessing protected profile endpoints.
+
+The authenticated session is stored using `sessionStorage`.
+
+If the user logs out, the authentication token and Student ID are removed from `sessionStorage`, and the protected profile is hidden.
+
+## Database
+
+Activity 7 uses **SQLite** as the database.
+
+The database contains two main tables:
+
+### Student Accounts
+
+The `student_accounts` table stores authentication information.
+
+Fields include:
+
+* `id`
+* `student_id`
+* `password_hash`
+
+### Student Profiles
+
+The `student_profiles` table stores the student's profile information.
+
+Fields include:
+
+* `id`
+* `student_id`
+* `name`
+* `course`
+* `year_level`
+* `about_me`
+* `skills`
+* `profile_picture`
+
+The `student_id` connects the student account with the corresponding student profile.
+
+This allows the backend to retrieve the profile belonging to the authenticated student.
+
+## API and Backend Architecture
+
+The application uses the following architecture:
+
+```text
+Cordova Application
+        |
+        v
+Node.js / Express API
+        |
+        v
+SQLite Database
+```
+
+The Cordova application does not connect directly to the SQLite database.
+
+Instead, JavaScript sends HTTP requests to the Node.js and Express backend.
+
+The backend handles authentication, database queries, profile retrieval, profile updates, and profile deletion.
+
+## API Endpoints
+
+The backend provides the following API endpoints:
+
+### Login
+
+```text
+POST /api/login
+```
+
+Authenticates the student using the Student ID and password.
+
+### Retrieve Profile
+
+```text
+GET /api/profile
+```
+
+Retrieves the profile belonging to the authenticated student.
+
+This endpoint requires a valid JWT authentication token.
+
+### Update Profile
+
+```text
+PUT /api/profile
+```
+
+Updates the authenticated student's profile information in the SQLite database.
+
+The information that can be updated includes:
+
+* Name
+* Course
+* Year Level
+* About Me
+* Skills
+* Profile Picture
+
+### Delete Profile
+
+```text
+DELETE /api/profile
+```
+
+Deletes the authenticated student's profile from the database.
+
+This endpoint was implemented to demonstrate the Delete operation required for CRUD testing.
+
+## CRUD Operations
+
+Activity 7 implements the four basic database operations:
+
+* **Create** - Creates the student account and student profile using the seed script.
+* **Read** - Retrieves the authenticated student's profile from the database.
+* **Update** - Updates profile information through the Edit Profile function.
+* **Delete** - Deletes the student's profile through the protected Delete API endpoint.
+
+The CRUD operations were tested using the Activity 7 demonstration account.
+
+## Edit Profile and Database Update
+
+The Edit Profile function from Activity 5 was connected to the Activity 7 backend.
+
+When the student saves profile changes:
+
+1. The application validates the required information.
+2. The updated information is sent to the backend.
+3. The backend verifies the authentication token.
+4. The backend updates the student's record in SQLite.
+5. The application displays a successful update message.
+6. The updated information remains stored in the database.
+
+This allows profile information to remain available after logging out and logging in again.
+
+## Camera Integration and Database Persistence
+
+The Activity 6 Camera feature was retained and connected to the Activity 7 database.
+
+When the student selects **Change Profile Picture**:
+
+1. The Cordova Camera plugin opens the camera.
+2. The student captures a picture.
+3. The captured image is returned to the application.
+4. The image is displayed as the new profile picture.
+5. The image is stored locally for Activity 6 compatibility.
+6. The new profile picture is sent to the backend.
+7. The backend stores the profile picture with the authenticated student's profile.
+8. The application displays a successful update message.
+
+The profile picture is associated with the student's profile through the authenticated Student ID.
+
+The camera feature was tested by capturing a picture, logging out, logging back in, and confirming that the same profile picture was retrieved again from the database.
+
+## Data Persistence
+
+Activity 7 uses the database as the main persistent storage for the student's profile.
+
+The persistence test was performed as follows:
+
+1. Log in using the demonstration account.
+2. Retrieve the student profile.
+3. Change profile information.
+4. Save the changes.
+5. Change the profile picture.
+6. Confirm the successful update messages.
+7. Log out.
+8. Log in again using the same account.
+9. Confirm that the updated profile information remains.
+10. Confirm that the updated profile picture remains.
+
+The test confirmed that the updated profile information and profile picture remain available after logout and login.
+
+## Validation and Error Handling
+
+The application includes validation and error handling for authentication and profile management.
+
+Login validation checks that:
+
+* Student ID is not empty.
+* Password is not empty.
+
+The backend also returns an error when incorrect login credentials are provided.
+
+Protected profile requests require a valid authentication token.
+
+Profile updates require the required profile information before the database is updated.
+
+The application also handles camera cancellation and camera errors without crashing.
+
+## Security
+
+The project includes several security measures:
+
+* Passwords are stored as bcrypt hashes instead of plain-text passwords.
+* JWT is used to authenticate protected API requests.
+* The JWT secret is provided through the `JWT_SECRET` environment variable instead of being stored directly in the source code.
+* Protected profile endpoints require authentication.
+* The Cordova application communicates with the backend API instead of connecting directly to the database.
+* Authentication tokens are removed from `sessionStorage` during logout.
+* Private credentials and secret keys should not be committed to the public GitHub repository.
+
+## Technologies Used
+
+The Activity 7 application uses:
+
+* HTML
+* CSS
+* JavaScript
+* Apache Cordova
+* Node.js
+* Express
+* SQLite
+* bcryptjs
+* JSON Web Token (JWT)
+* CORS
+* Cordova Camera Plugin
+* Android SDK
+* Gradle
+* Android Emulator
+
+## Backend Dependencies
+
+The backend uses the following Node.js packages:
+
+```text
+express
+sqlite3
+bcryptjs
+jsonwebtoken
+cors
+```
+
+## Project Structure
+
+The Activity 7 project includes the following main files and folders:
+
+```text
+Villamin_Profile/
+├── backend/
+│   ├── server.js
+│   ├── seed.js
+│   ├── student_profile.db
+│   └── package.json
+├── www/
+│   ├── css/
+│   │   └── index.css
+│   ├── img/
+│   ├── js/
+│   │   └── profile.js
+│   └── index.html
+├── screenshots/
+├── resources/
+│   └── android/
+│       └── xml/
+│           └── network_security_config.xml
+├── config.xml
+├── package.json
+└── README.md
+```
+
+## How to Run Activity 7
+
+### Start the Backend
+
+1. Open Command Prompt.
+2. Open the backend folder:
+
+```text
+cd C:\Users\luicv\Villamin_Profile\backend
+```
+
+3. Set the JWT secret using an environment variable:
+
+```text
+set JWT_SECRET=Activity7DemoSecret_2026
+```
+
+4. Start the backend:
+
+```text
+node server.js
+```
+
+The backend runs on:
+
+```text
+http://localhost:3000
+```
+
+Keep this Command Prompt window running while testing the application.
+
+### Run the Android Application
+
+1. Open another Command Prompt window.
+2. Open the project folder:
+
+```text
+cd C:\Users\luicv\Villamin_Profile
+```
+
+3. Build and run the Android application:
+
+```text
+cordova run android
+```
+
+4. Wait for the application to install and launch on the Android emulator.
+5. Log in using the demonstration account.
+6. Test the profile, editing, camera, and logout features.
+
+## Demonstration Account
+
+The project includes a demonstration student account for testing the authentication and database features.
+
+```text
+Student ID: TEST001
+Password: TestPassword123
+```
+
+This account is used only as a demonstration account for testing Activity 7.
+
+## Activity 7 Testing
+
+The following tests were performed:
+
+* **Test 1 - Valid Login:** Successfully logged in using the demonstration Student ID and password.
+* **Test 2 - Invalid Login:** Incorrect credentials were rejected with an appropriate error message.
+* **Test 3 - Protected Profile:** Profile information could not be retrieved without authentication.
+* **Test 4 - Profile Retrieval:** The authenticated student's profile was successfully retrieved from SQLite.
+* **Test 5 - Profile Update:** Profile information was successfully updated through the API.
+* **Test 6 - Update Persistence:** Updated profile information remained after logout and login.
+* **Test 7 - Camera:** The Change Profile Picture button successfully opened the camera.
+* **Test 8 - Capture Photo:** A photo was successfully captured and displayed as the new profile picture.
+* **Test 9 - Camera Database Persistence:** The captured profile picture remained after logout and login.
+* **Test 10 - Logout:** Logout removed the authentication session and returned the application to the Login screen.
+* **Test 11 - Create:** A demonstration account and profile were created using the seed script.
+* **Test 12 - Read:** Student profile data was retrieved from the database.
+* **Test 13 - Update:** Student profile data was updated in the database.
+* **Test 14 - Delete:** The demonstration student's profile was successfully deleted through the protected API and recreated using the seed script for continued testing.
+
+## Activity 7 Screenshots
+
+The following screenshots can be added to document the Activity 7 features:
+
+### Screenshot 1 - Login
+
+```text
+![Activity 7 Login](screenshots/Activity7_Login.png)
+```
+
+### Screenshot 2 - Student Profile
+
+```text
+![Activity 7 Student Profile](screenshots/Activity7_Student_Profile.png)
+```
+
+### Screenshot 3 - Edit Profile
+
+```text
+![Activity 7 Edit Profile](screenshots/Activity7_Edit_Profile.png)
+```
+
+### Screenshot 4 - Profile Update Success
+
+```text
+![Activity 7 Profile Update](screenshots/Activity7_Profile_Update.png)
+```
+
+### Screenshot 5 - Change Profile Picture / Camera
+
+```text
+![Activity 7 Camera](screenshots/Activity7_Camera.png)
+```
+
+### Screenshot 6 - Profile Picture Updated
+
+```text
+![Activity 7 Updated Profile Picture](screenshots/Activity7_Updated_Profile_Picture.png)
+```
+
+### Screenshot 7 - Logout
+
+```text
+![Activity 7 Logout](screenshots/Activity7_Logout.png)
+```
+
+### Screenshot 8 - Login After Logout / Persistent Data
+
+```text
+![Activity 7 Persistent Profile](screenshots/Activity7_Persistent_Profile.png)
+```
+
+## Activity 7 Conclusion
+
+The Student Profile application was successfully expanded with student authentication, JWT-protected API access, SQLite database storage, profile retrieval, profile editing, CRUD operations, logout functionality, and persistent camera profile pictures.
+
+The application successfully communicates using the following architecture:
+
+```text
+Cordova Application
+        ↓
+API / Backend
+        ↓
+SQLite Database
+```
+
+The Activity 7 features were tested on an Android emulator, including valid and invalid login, protected profile access, profile retrieval, profile updates, CRUD operations, camera integration, logout, and persistence after logging in again.
+
+
 © 2026 Luic Villamin. All Rights Reserved.

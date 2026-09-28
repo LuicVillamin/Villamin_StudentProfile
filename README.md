@@ -1045,7 +1045,7 @@ cd C:\Users\luicv\Villamin_Profile\backend
 3. Set the JWT secret using an environment variable:
 
 ```text
-set JWT_SECRET=Activity7DemoSecret_2026
+set JWT_SECRET=your_secure_jwt_secret_here
 ```
 
 4. Start the backend:
@@ -1113,55 +1113,55 @@ The following tests were performed:
 
 ## Activity 7 Screenshots
 
-The following screenshots can be added to document the Activity 7 features:
+The following screenshots document the Activity 7 login, authentication, profile management, camera integration, logout, and database functionality.
 
-### Screenshot 1 - Login
+### Login Page
 
-```text
-![Activity 7 Login](screenshots/Activity7_Login.png)
-```
+![Activity 7 Login Page](screenshots/activity7-login.png)
 
-### Screenshot 2 - Student Profile
+### Login Credentials
 
-```text
-![Activity 7 Student Profile](screenshots/Activity7_Student_Profile.png)
-```
+![Activity 7 Login Credentials](screenshots/activity7-login-credentials-TEST001-TestPassword123.png)
 
-### Screenshot 3 - Edit Profile
+### Login Processing
 
-```text
-![Activity 7 Edit Profile](screenshots/Activity7_Edit_Profile.png)
-```
+![Activity 7 Login Processing](screenshots/activity7-login-processing-TEST001-TestPassword123.png)
 
-### Screenshot 4 - Profile Update Success
+### Successful Login
 
-```text
-![Activity 7 Profile Update](screenshots/Activity7_Profile_Update.png)
-```
+![Activity 7 Successful Login](screenshots/activity7-login-success-TEST001-TestPassword123.png)
 
-### Screenshot 5 - Change Profile Picture / Camera
+### Student Profile
 
-```text
-![Activity 7 Camera](screenshots/Activity7_Camera.png)
-```
+![Activity 7 Student Profile](screenshots/activity7-student-profile.png)
 
-### Screenshot 6 - Profile Picture Updated
+### Edit Profile
 
-```text
-![Activity 7 Updated Profile Picture](screenshots/Activity7_Updated_Profile_Picture.png)
-```
+![Activity 7 Edit Profile 1](screenshots/activity7-edit-profile1.png)
 
-### Screenshot 7 - Logout
+![Activity 7 Edit Profile 2](screenshots/activity7-edit-profile2.png)
 
-```text
-![Activity 7 Logout](screenshots/Activity7_Logout.png)
-```
+### Camera and Profile Picture
 
-### Screenshot 8 - Login After Logout / Persistent Data
+![Activity 7 Camera Profile Picture 1](screenshots/activity7-camera-profile-picture1.png)
 
-```text
-![Activity 7 Persistent Profile](screenshots/Activity7_Persistent_Profile.png)
-```
+![Activity 7 Camera Profile Picture 2](screenshots/activity7-camera-profile-picture2.png)
+
+![Activity 7 Camera Profile Picture 3](screenshots/activity7-camera-profile-picture3.png)
+
+![Activity 7 Camera Profile Picture 4](screenshots/activity7-camera-profile-picture4.png)
+
+![Activity 7 Camera Profile Picture 5](screenshots/activity7-camera-profile-picture5.png)
+
+### Logout
+
+![Activity 7 Logout 1](screenshots/activity7-logout1.png)
+
+![Activity 7 Logout 2](screenshots/activity7-logout2.png)
+
+### Database Profile
+
+![Activity 7 Database Profile](screenshots/activity7-database-profile.png)
 
 ## Activity 7 Conclusion
 

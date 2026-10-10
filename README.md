@@ -1048,6 +1048,28 @@ Before running the application, ensure that the following are installed and conf
 The backend server and the Android application must both be running for the mobile application to communicate with the database through the API.
 
 
+### Get the Project
+
+If the project has not already been downloaded, follow these steps to obtain it from GitHub.
+
+1. Install Git for Windows if it is not already installed.
+2. Open Command Prompt in the folder where you want to store the project.
+3. Clone the repository:
+
+   ```cmd
+   git clone https://github.com/LuicVillamin/Villamin_StudentProfile.git
+   ```
+
+4. Navigate to the cloned project directory. Replace the example path with the actual location on the evaluation computer:
+
+   ```cmd
+   cd /d "C:\path\to\Villamin_StudentProfile"
+   ```
+
+5. Continue with the backend setup, Windows evaluation workaround, and Android application launch instructions below.
+
+**Note:** If the project has already been cloned, do not clone it again. Open Command Prompt in the existing project directory and continue with the instructions.
+
 
 ### 1. Install Backend Dependencies
 

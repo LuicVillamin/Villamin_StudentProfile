@@ -1109,7 +1109,100 @@ This is a local network address for the computer on which the backend was config
 
 For the application to communicate with the backend, the configured API address must be reachable from the Android emulator or device. An Android emulator's `localhost` refers to the emulator itself, not automatically to the computer running the Node.js server.
 
-**Important environment limitation:** the configured address may differ on another computer or network. The current README-only submission does not change the application's existing API configuration. If the configured address is not reachable in the evaluation environment, the mobile application may be unable to communicate with the backend.
+#### Windows Evaluation Workaround for the Existing API Address
+
+The current Cordova application is configured to connect to `http://10.0.0.37:3000`. This is a private IP address, so it will not automatically work on another computer. The following is an optional Windows evaluation workaround that attempts to make the existing address available locally without modifying the application's source code.
+
+**Requirements and precautions**
+
+- This procedure is intended for a Windows computer running the backend and Android Studio emulator.
+- Administrator permission is required to configure the Windows network interface.
+- Check the computer's current network configuration before adding an address. Do not add `10.0.0.37` if it is already assigned to another device or if doing so would cause an IP address conflict.
+- This is an environment-specific workaround and must be verified on the evaluation computer.
+
+**1. Check the computer's network configuration**
+
+Open Command Prompt and run:
+
+```cmd
+ipconfig
+```
+
+Check whether `10.0.0.37` is already assigned to an adapter on the computer. If it is already assigned to the computer, do not add the address again. Proceed to the backend connectivity tests.
+
+**2. Add the expected address if it is available**
+
+If the address is not already assigned to the computer and there is no IP conflict, open Command Prompt as administrator and run:
+
+```cmd
+netsh interface ipv4 add address name="Loopback Pseudo-Interface 1" address=10.0.0.37 mask=255.255.255.255 store=active skipassource=true
+```
+
+If Windows reports an error, do not repeatedly add the address. Review the error and the existing interface configuration first.
+
+Verify the configured addresses:
+
+```cmd
+netsh interface ipv4 show addresses name="Loopback Pseudo-Interface 1"
+```
+
+Confirm that `10.0.0.37` appears in the output before continuing.
+
+**3. Start the backend**
+
+In a regular Command Prompt, navigate to the backend folder:
+
+```cmd
+cd C:\Users\luicv\Villamin_Profile\backend
+```
+
+Install the backend dependencies:
+
+```cmd
+npm install
+```
+
+Set the JWT secret for this Command Prompt session:
+
+```cmd
+set "JWT_SECRET=LocalActivity7TestSecret_2026"
+```
+
+Start the backend:
+
+```cmd
+node server.js
+```
+
+Keep the backend running. The example secret is for local classroom testing only and must not be reused as a production secret.
+
+**4. Verify the API address**
+
+Open a second Command Prompt and run:
+
+```cmd
+curl http://10.0.0.37:3000
+```
+
+The expected response is:
+
+```json
+{"message":"Student Profile API is running."}
+```
+
+If the response does not appear, check the backend terminal, address configuration, port `3000`, and Windows firewall settings.
+
+**5. Verify the Android emulator connection**
+
+Start the Android emulator and open its browser. Visit:
+
+```text
+http://10.0.0.37:3000
+```
+
+Confirm that the same API response appears. Then launch the Cordova application and test login, profile viewing, profile editing, profile-picture updates, and logout.
+
+**Important:** a successful response in the computer's browser does not prove that the emulator can connect. Both tests must pass. If the workaround fails, the existing hardcoded API address remains a limitation; this procedure does not modify or repair the application source code.
 
 ### 4. Launch the Android Application
 

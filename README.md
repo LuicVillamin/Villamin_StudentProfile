@@ -1047,13 +1047,15 @@ Before running the application, ensure that the following are installed and conf
 
 The backend server and the Android application must both be running for the mobile application to communicate with the database through the API.
 
+
+
 ### 1. Install Backend Dependencies
 
 1. Open Command Prompt.
-2. Navigate to the backend directory:
+2. Navigate to the backend directory. Replace the example path with the actual `backend` folder path on the evaluation computer.
 
 ```cmd
-cd C:\Users\luicv\Villamin_Profile\backend
+cd /d "C:\path\to\Villamin_StudentProfile\backend"
 ```
 
 3. Install the dependencies defined in `package.json`:

@@ -1152,8 +1152,10 @@ Confirm that `10.0.0.37` appears in the output before continuing.
 
 In a regular Command Prompt, navigate to the backend folder:
 
+Before running the commands below, replace `C:\path\to\Villamin_StudentProfile\backend` with the actual `backend` folder path on the evaluation computer.
+
 ```cmd
-cd C:\Users\luicv\Villamin_Profile\backend
+cd /d "C:\path\to\Villamin_StudentProfile\backend"
 ```
 
 Install the backend dependencies:
@@ -1209,10 +1211,10 @@ Confirm that the same API response appears. Then launch the Cordova application 
 1. Keep the backend server running in its first Command Prompt window.
 2. Open Android Studio and start an Android emulator, or connect a compatible Android device.
 3. Open a second Command Prompt window.
-4. Navigate to the project root directory:
+4. Navigate to the project root directory. Replace the example path with the actual project root folder on the evaluation computer.
 
 ```cmd
-cd C:\Users\luicv\Villamin_Profile
+cd /d "C:\path\to\Villamin_StudentProfile"
 ```
 
 5. Check that Cordova can detect the Android development environment:

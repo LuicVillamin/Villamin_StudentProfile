@@ -1033,64 +1033,158 @@ Villamin_Profile/
 
 ## How to Run Activity 7
 
-### Start the Backend
+This section explains how to install the backend dependencies, start the Node.js server, run the Cordova Android application, and test the student profile features.
+
+### Prerequisites
+
+Before running the application, ensure that the following are installed and configured:
+
+- Node.js and npm
+- Apache Cordova CLI
+- Android Studio and the required Android SDK components
+- An Android emulator or a connected Android device
+- The project dependencies listed in `backend/package.json`
+
+The backend server and the Android application must both be running for the mobile application to communicate with the database through the API.
+
+### 1. Install Backend Dependencies
 
 1. Open Command Prompt.
-2. Open the backend folder:
+2. Navigate to the backend directory:
 
-```text
+```cmd
 cd C:\Users\luicv\Villamin_Profile\backend
 ```
 
-3. Set the JWT secret using an environment variable:
+3. Install the dependencies defined in `package.json`:
 
-```text
-set JWT_SECRET=your_secure_jwt_secret_here
+```cmd
+npm install
 ```
 
-4. Start the backend:
+Wait for the installation to finish before continuing.
 
-```text
+### 2. Start the Backend Server
+
+1. In the same Command Prompt window, make sure you are still in the `backend` directory.
+2. Set the JWT secret environment variable for the current Command Prompt session:
+
+```cmd
+set "JWT_SECRET=LocalActivity7TestSecret_2026"
+```
+
+This example value is intended for local classroom testing only. A production deployment must use a strong, private secret and must not expose it publicly.
+
+3. Start the backend server:
+
+```cmd
 node server.js
 ```
 
-The backend runs on:
+4. Confirm that the server starts and connects to the SQLite database. The expected output includes messages indicating that the server is running and the database tables are ready.
+
+5. Test the backend's root endpoint in a browser on the same computer:
 
 ```text
 http://localhost:3000
 ```
 
-Keep this Command Prompt window running while testing the application.
+The expected response is:
 
-### Run the Android Application
+```json
+{"message":"Student Profile API is running."}
+```
 
-1. Open another Command Prompt window.
-2. Open the project folder:
+Keep the backend Command Prompt window open while using the mobile application. Closing it or stopping the Node.js process will make the API unavailable.
+
+### 3. Check the Mobile App's Backend Connection
+
+The Cordova application communicates with the Node.js backend through its API base URL. The current application configuration uses:
 
 ```text
+http://10.0.0.37:3000
+```
+
+This is a local network address for the computer on which the backend was configured. It is not a public internet address.
+
+For the application to communicate with the backend, the configured API address must be reachable from the Android emulator or device. An Android emulator's `localhost` refers to the emulator itself, not automatically to the computer running the Node.js server.
+
+**Important environment limitation:** the configured address may differ on another computer or network. The current README-only submission does not change the application's existing API configuration. If the configured address is not reachable in the evaluation environment, the mobile application may be unable to communicate with the backend.
+
+### 4. Launch the Android Application
+
+1. Keep the backend server running in its first Command Prompt window.
+2. Open Android Studio and start an Android emulator, or connect a compatible Android device.
+3. Open a second Command Prompt window.
+4. Navigate to the project root directory:
+
+```cmd
 cd C:\Users\luicv\Villamin_Profile
 ```
 
-3. Build and run the Android application:
+5. Check that Cordova can detect the Android development environment:
 
-```text
+```cmd
+cordova requirements android
+```
+
+6. Build, install, and launch the application:
+
+```cmd
 cordova run android
 ```
 
-4. Wait for the application to install and launch on the Android emulator.
-5. Log in using the demonstration account.
-6. Test the profile, editing, camera, and logout features.
+7. Wait for the build and installation process to finish. Confirm that the Student Profile application opens on the emulator or device.
+
+Keep the backend server running throughout the test.
+
+### 5. Test the Application Features
+
+Use the demonstration account below to test the application:
+
+1. Log in with the valid demonstration credentials.
+2. Verify that the student profile is displayed.
+3. Edit the available profile information and save the changes.
+4. Test the profile-picture feature and grant camera permissions if requested.
+5. Log out and log in again to check whether the saved profile information persists.
+6. Test an incorrect password to verify that invalid login credentials are rejected.
+7. Log out and confirm that the application returns to the login screen.
+
+These tests verify the main application functions when the mobile app can reach the backend and database.
 
 ## Demonstration Account
 
-The project includes a demonstration student account for testing the authentication and database features.
+The project includes a demonstration student account for testing authentication and student profile functionality.
 
 ```text
 Student ID: TEST001
 Password: TestPassword123
 ```
 
-This account is used only as a demonstration account for testing Activity 7.
+Use these credentials only for the classroom demonstration. They are demonstration credentials, not a production account.
+
+## Troubleshooting
+
+**The backend does not start**
+
+- Confirm that the Command Prompt is in the `backend` directory.
+- Run `npm install` to install the backend dependencies.
+- Set the `JWT_SECRET` environment variable in the same Command Prompt window before running `node server.js`.
+- Check the terminal output for database or dependency errors.
+
+**The application cannot connect to the backend**
+
+- Confirm that the Node.js server is running on port `3000`.
+- Open `http://localhost:3000` in a browser on the computer hosting the backend to verify that the server responds.
+- Confirm that the Android emulator or device can reach the configured API address.
+- Remember that `localhost` inside the Android emulator refers to the emulator itself.
+- The current application uses `http://10.0.0.37:3000`. If that address is not reachable from the evaluation environment, the existing API configuration is a limitation that the README alone cannot correct.
+
+**The Android application fails to build or launch**
+
+- Confirm that Android Studio, the Android SDK, and the required platform tools are installed.
+- Start the emulator before running `cordova run android`.
+- Review the Command Prompt output for the specific build or deployment error.
 
 ## Activity 7 Testing
 
